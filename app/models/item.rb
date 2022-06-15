@@ -2,7 +2,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category, :condition, :postage_type, :prefecture, :preparation_day
+  belongs_to :category, :condition, :postagetype, :prefecture, :preparationday
 
   with_options presence: true do
     validates :name, :explanation, :image
@@ -14,7 +14,7 @@ class Item < ApplicationRecord
   end
                
 
-   validates :category, :condition, :postage_type, :prefecture, :preparation_day,
+   validates :category_id, :condition_id, :postagetype_id, :prefecture_id, :preparationday_id,
              numericality: { other_than: 1 , message: "can't be blank"}
 end
 
