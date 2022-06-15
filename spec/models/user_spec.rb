@@ -60,11 +60,33 @@ RSpec.describe User, type: :model do
       end
 
       it 'passwordが129文字以上では保存できない' do
-        @user.password = Faker::Internet.password(min_length: 129)
+        @user.password = Faker::Lorem.characters(number: 129, min_alpha: 1, min_numeric: 1)
         @user.password_confirmation = @user.password
         @user.valid?
         expect(@user.errors.full_messages).to include 'Password is too long (maximum is 128 characters)'
       end
+
+      it '英字のみのpasswordでは保存できない' do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password is invalid. Input half-width characters.", "Password confirmation is invalid. Input half-width characters."
+      end
+
+      it '数字のみのpasswordでは保存できない' do
+        @user.password = '111111'
+        @user.password_confirmation = '111111'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password is invalid. Input half-width characters.", "Password confirmation is invalid. Input half-width characters."
+      end
+
+      it '全角文字を含むパスワードでは登録できない' do
+        @user.password = 'AAAAAA'
+        @user.password_confirmation = 'AAAAAA'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Password is invalid. Input half-width characters.", "Password confirmation is invalid. Input half-width characters."
+      end
+
 
       it 'first_nameが空では保存できない' do
         @user.first_name = ''
