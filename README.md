@@ -49,9 +49,9 @@ Things you may want to cover:
 | user               | references | null: false, foreign_key: true|
 | category_id        | integer    | null: false                   |
 | condition_id       | integer    | null: false                   |
-| postagetype_id    | integer    | null: false                   |
+| postage_type_id    | integer    | null: false                   |
 | prefecture_id      | integer    | null: false                   |
-| preparationday_id | integer    | null: false                   |
+| preparation_day_id | integer    | null: false                   |
 
 ### Association
 
@@ -59,9 +59,9 @@ Things you may want to cover:
 --has_one :order
 --belongs_to_active_hash :category
 --belongs_to_active_hash :condition
---belongs_to_active_hash :postagetype
+--belongs_to_active_hash :postage_type
 --belongs_to_active_hash :prefecture
---belongs_to_active_hash :preparationday
+--belongs_to_active_hash :preparation_day
 
 ## orders テーブル
 
