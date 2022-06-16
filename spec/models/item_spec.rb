@@ -30,29 +30,29 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Image can't be blank"
       end
-      
+
       it 'priceが空では出品できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price can't be blank","Price is not a number"
+        expect(@item.errors.full_messages).to include "Price can't be blank", 'Price is not a number'
       end
-      
+
       it 'priceが300円未満だと出品できない' do
         @item.price = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price must be greater than or equal to 300"
+        expect(@item.errors.full_messages).to include 'Price must be greater than or equal to 300'
       end
-      
+
       it 'priceが10,000,000円以上だと出品できない' do
-        @item.price = 10000001
+        @item.price = 10_000_001
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price must be less than or equal to 9999999"
+        expect(@item.errors.full_messages).to include 'Price must be less than or equal to 9999999'
       end
 
       it 'priceが全角数字では出品できない' do
         @item.price = '５００'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Price is not a number"
+        expect(@item.errors.full_messages).to include 'Price is not a number'
       end
 
       it 'category_idが選択されていなければ出品できない' do
@@ -72,7 +72,7 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "Postagetype can't be blank"
       end
-      
+
       it 'prefecture_id が選択されていなければ出品できない' do
         @item.prefecture_id = 1
         @item.valid?
@@ -88,10 +88,8 @@ RSpec.describe Item, type: :model do
       it 'userが紐ついてないと出品できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include "User must exist"
+        expect(@item.errors.full_messages).to include 'User must exist'
       end
     end
   end
-
-
 end

@@ -3,13 +3,11 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :order
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category  
+  belongs_to :category
   belongs_to :condition
   belongs_to :postagetype
   belongs_to :prefecture
   belongs_to :preparationday
-  
-
 
   with_options presence: true do
     validates :name, :explanation, :image
