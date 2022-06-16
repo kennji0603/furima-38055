@@ -15,5 +15,5 @@ class User < ApplicationRecord
             format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'is invalid. Input half-width characters.' }
 
   has_many :items
-  has_many :orders
+  #has_many :orders
 end
