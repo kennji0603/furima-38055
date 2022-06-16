@@ -5,10 +5,10 @@ class Item < ApplicationRecord
   belongs_to :category  
   belongs_to :condition
   belongs_to :postagetype
-  belongs_to :Prefecture
+  belongs_to :prefecture
   belongs_to :preparationday
 
-  
+
   with_options presence: true do
     validates :name, :explanation, :image
   end
