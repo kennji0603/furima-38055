@@ -155,7 +155,7 @@
       </li>
      <% end %> 
       
-     <% unless @items %>
+     <% if @items.empty? %>
       <%# 商品がある場合は表示されないようにしましょう %>
       <li class='list'>
         <%= link_to '#' do %>
