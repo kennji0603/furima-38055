@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :postagetype
   belongs_to :prefecture
   belongs_to :preparationday
+  has_one :order
 
 
   with_options presence: true do
