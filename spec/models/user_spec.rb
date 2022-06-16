@@ -70,25 +70,23 @@ RSpec.describe User, type: :model do
         @user.password = 'aaaaaa'
         @user.password_confirmation = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include 'Password is invalid. Input half-width characters.',
-                                                      'Password confirmation is invalid. Input half-width characters.'
+        expect(@user.errors.full_messages).to include "Password is invalid. Input half-width characters.", "Password confirmation is invalid. Input half-width characters."
       end
 
       it '数字のみのpasswordでは保存できない' do
         @user.password = '111111'
         @user.password_confirmation = '111111'
         @user.valid?
-        expect(@user.errors.full_messages).to include 'Password is invalid. Input half-width characters.',
-                                                      'Password confirmation is invalid. Input half-width characters.'
+        expect(@user.errors.full_messages).to include "Password is invalid. Input half-width characters.", "Password confirmation is invalid. Input half-width characters."
       end
 
       it '全角文字を含むパスワードでは登録できない' do
         @user.password = 'AAAAAA'
         @user.password_confirmation = 'AAAAAA'
         @user.valid?
-        expect(@user.errors.full_messages).to include 'Password is invalid. Input half-width characters.',
-                                                      'Password confirmation is invalid. Input half-width characters.'
+        expect(@user.errors.full_messages).to include "Password is invalid. Input half-width characters.", "Password confirmation is invalid. Input half-width characters."
       end
+
 
       it 'first_nameが空では保存できない' do
         @user.first_name = ''
