@@ -2,8 +2,13 @@ class Item < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category, :condition, :postagetype, :prefecture, :preparationday
+  belongs_to :category  
+  belongs_to :condition
+  belongs_to :postagetype
+  belongs_to :Prefecture
+  belongs_to :preparationday
 
+  
   with_options presence: true do
     validates :name, :explanation, :image
   end
