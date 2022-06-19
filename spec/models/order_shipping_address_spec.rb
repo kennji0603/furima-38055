@@ -5,7 +5,6 @@ RSpec.describe OrderShippingAddress, type: :model do
     before do
       @user = FactoryBot.create(:user)
       @item = FactoryBot.build(:item)
-      @item.image = fixture_file_upload('public/images/test_image.png')
       @item.save
       sleep 0.1
       @order_shipping_address = FactoryBot.build(:order_shipping_address, user_id: @user.id, item_id: @item.id)
