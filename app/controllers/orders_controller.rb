@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
 
   def create
     @item = Item.find(params[:item_id])
+    binding.pry
     @order_shipping_address = OrderShippingAddress.new(order_params)
     if @order_shipping_address.valid?
       @order_shipping_address.save
@@ -20,10 +21,13 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order_shipping_address).permit(:postal_code, :city, :house_number, :building_name, :phone_number, :prefecture_id).merge(user_id: current_user.id, item_id: @item.id)
+    params.require(:order_shipping_address).permit(:postal_code, :city, :house_number, :building_name, :phone_number, :prefecture_id).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
 
   def move_to_items_index
-    redirect_to root_path unless @item.order.blank? && current_user.id == @item.user_id
+    @item = Item.find(params[:item_id])
+   if @item.user_id == current_user.id
+    redirect_to root_path
+   end
   end
 end
