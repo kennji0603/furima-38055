@@ -91,4 +91,4 @@ Things you may want to cover:
 ### Association
 
 --belongs_to :order
---has_one_active_hash :prefecture
+--belongs_to_active_hash :prefecture
