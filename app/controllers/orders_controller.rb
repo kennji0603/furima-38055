@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
-  before_action :move_to_items_index, only: [:index, :create]
   before_action :item_params, only: [:index, :create]
+  before_action :move_to_items_index, only: [:index, :create]
   def index
     @order_shipping_address = OrderShippingAddress.new
   end
@@ -30,7 +30,6 @@ class OrdersController < ApplicationController
   end
 
   def move_to_items_index
-    item_params
     redirect_to root_path unless @item.order.blank? && @item.user_id != current_user.id
   end
 
