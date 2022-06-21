@@ -38,6 +38,7 @@ Things you may want to cover:
 
 --has_many :items
 --has_many :orders
+--has_many :comments
 
 ## items テーブル
 
@@ -57,6 +58,7 @@ Things you may want to cover:
 
 --belongs_to :user
 --has_one :order
+--has_many :comments
 --belongs_to_active_hash :category
 --belongs_to_active_hash :condition
 --belongs_to_active_hash :postage_type
@@ -92,3 +94,15 @@ Things you may want to cover:
 
 --belongs_to :order
 --belongs_to_active_hash :prefecture
+
+## comments テーブル
+| Column  | Type       | Options                        |
+| ------- | ---------- | ------------------------------ |
+| content | string     | null: false                    |
+| user    | integer    | null: false, foreign_key: true |
+| item    | integer    | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
