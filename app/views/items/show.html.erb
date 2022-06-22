@@ -83,12 +83,12 @@
     <div id="comments">
       <div class="comment-list">＜コメント一覧＞</div>
         <% @comments.each do |comment| %>
-          <%#<% if current_user.id == comment.user_id %>
             <div class="comment">
-              <p class="user-info"><%= comment.user.nickname %>： </p>
-              <p><%= comment.text %></p>
+              <p><%= comment.user.nickname %></p>
+              <p class="user-info">
+               <%= comment.text%>
+              </p>
             </div>
-          <%#<% end %>
         <% end %>
     </div>
     <div class="comments-form">
@@ -98,13 +98,15 @@
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
       <div class="comment-form">
-        <% if user_signed_in? %>
+        <% if user_signed_in?  %>
             <%= form_with model: [@item, @comment], id: "comment-form" do |f| %>
               <%= f.text_area :text , class: "comment-text"%>
               <div class="comment-btn">
                 <%= f.submit "コメントをする", class: "comment-flag-icon" %>
               </div>
             <% end %>
+        <% else %> 
+             <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
         <% end %>
       </div>
     </div>

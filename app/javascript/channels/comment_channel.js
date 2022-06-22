@@ -1,5 +1,4 @@
 import consumer from "./consumer"
-
 if(location.pathname.match(/\/items\/\d/)){
   
   consumer.subscriptions.create({
@@ -7,7 +6,7 @@ if(location.pathname.match(/\/items\/\d/)){
     item_id: location.pathname.match(/\d+/)[0]
   }, {
     connected() {
-    // Called when the subscription is ready for use on the server
+      // Called when the subscription is ready for use on the server
     },
 
     disconnected() {
@@ -16,14 +15,16 @@ if(location.pathname.match(/\/items\/\d/)){
 
     received(data) {
       const html = `
-          <div class="comment">
-            <p class="user-info">${data.user.nickname}： </p>
-            <p>${data.comment.text}</p>
-          </div>`
-      const comments = document.getElementById("comments");
-      comments.insertAdjacentHTML('beforeend', html);
-      const commentForm = document.getElementById("comment-form");
-      commentForm.reset();    
+        <div class="comment">
+          <p>${data.user.nickname}</p>
+          <p class="user-info">
+           ${data.comment.text}
+          </p>
+        </div>`
+      const comments = document.getElementById("comments")
+      comments.insertAdjacentHTML('beforeend', html)
+      const commentForm = document.getElementById("comment-form")
+      commentForm.reset();
     }
   });
-}  
+}
