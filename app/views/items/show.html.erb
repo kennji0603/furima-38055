@@ -83,12 +83,25 @@
     <div id="comments">
       <div class="comment-list">＜コメント一覧＞</div>
         <% @comments.each do |comment| %>
+          <% if comment.user_id == @item.user_id %>
             <div class="comment">
-              <p><%= comment.user.nickname %></p>
-              <p class="user-info">
-               <%= comment.text%>
-              </p>
+              <div class="comment-content">
+                <p><%= comment.text %></p>
+              </div>
+              <div class="user-info">
+                出品者：<%= comment.user.nickname %>
+              </div>
             </div>
+          <% else %>
+            <div class="another-user-comment"> 
+                <p class="another-user-info">
+                  <%= comment.user.nickname %>
+                </p>
+              <div class="another-user-comment-content"> 
+                  <p><%= comment.text %></p>
+              </div>  
+            </div>     
+          <% end %>  
         <% end %>
     </div>
     <div class="comments-form">
@@ -106,7 +119,7 @@
               </div>
             <% end %>
         <%  elsif @item.order.present? %>   
-             <strong><p>>※※※ こちらの商品は売り切れです ※※※</p></strong>
+             <strong><p>※※※ こちらの商品は売り切れです ※※※</p></strong>
         <% else %> 
              <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
         <% end %>
