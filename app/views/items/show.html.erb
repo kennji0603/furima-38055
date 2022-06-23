@@ -98,13 +98,15 @@
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       </p>
       <div class="comment-form">
-        <% if user_signed_in?  %>
+        <% if user_signed_in? && @item.order.blank? %>
             <%= form_with model: [@item, @comment], id: "comment-form" do |f| %>
               <%= f.text_area :text , class: "comment-text"%>
               <div class="comment-btn">
                 <%= f.submit "コメントをする", class: "comment-flag-icon" %>
               </div>
             <% end %>
+        <%  elsif @item.order.present? %>   
+             <strong><p>>※※※ こちらの商品は売り切れです ※※※</p></strong>
         <% else %> 
              <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
         <% end %>
