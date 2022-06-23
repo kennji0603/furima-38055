@@ -21,7 +21,7 @@ if(location.pathname.match(/\/items\/\d/)){
               <p>${data.comment.text}</p>
             </div>
             <div class="user-info">
-              "出品者："+${data.user.nickname}
+              出品者：${data.user.nickname}
             </div>
           </div>`
           const comments = document.getElementById("comments")
